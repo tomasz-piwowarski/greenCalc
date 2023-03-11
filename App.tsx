@@ -1,23 +1,28 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
-import { useEffect } from "react"
-
+import { useFonts } from 'expo-font';
+import Layout from './components/Layout';
 
 export default function App() {
+  const [loaded] = useFonts({
+    'Lobster-Regular': require('./assets/fonts/Lobster-Regular.ttf'),
+  });
+
+  if (!loaded) {
+    return null;
+  }
+
   return (
-    <View style={styles.container}>
-			<LinearGradient
-        colors={['rgba(16, 150, 18, 0.8)', 'transparent']}
-				style={styles.background}
-      />
-			<Image 
-				source={require("./assets/tree.png")}
-				style={styles.img}
-			/>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Layout>
+      <>
+        <Image
+          source={require('./assets/tree.png')} //Nature Vectors by Vecteezy - https://www.vecteezy.com/free-vector/nature
+          style={styles.img}
+        />
+        <Text style={styles.logo}>greenCalc</Text>
+        <StatusBar style="auto" />
+      </>
+    </Layout>
   );
 }
 
@@ -28,17 +33,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  background: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: 0,
+  img: {
+    width: 250,
     height: 300,
   },
-	img: {
-		width: 250,
-		height: 300,
-		position: "absolute",
-		top: 170
-	}
+  logo: {
+    fontFamily: 'Lobster-Regular',
+    fontSize: 36,
+    color: '#568638',
+  },
 });
