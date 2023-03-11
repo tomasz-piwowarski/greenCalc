@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Text, View } from 'react-native';
 import { useFonts } from 'expo-font';
 import Layout from './components/Layout';
 import LoadingScreen from './components/LoadingScreen';
+import AppBody from './components/AppBody';
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -27,15 +27,5 @@ export default function App() {
     return null;
   }
 
-  return (
-    <Layout>
-      {isLoading ? (
-        <LoadingScreen />
-      ) : (
-        <View>
-          <Text>XD</Text>
-        </View>
-      )}
-    </Layout>
-  );
+  return <Layout>{isLoading ? <LoadingScreen /> : <AppBody />}</Layout>;
 }

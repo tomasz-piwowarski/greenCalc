@@ -1,15 +1,16 @@
-import { StyleSheet, Image, View } from 'react-native';
+import { StyleSheet, Image } from 'react-native';
+import Animated, { FadeOut } from 'react-native-reanimated';
 import Logo from './Logo';
 
 export default function LoadingScreen() {
   return (
-    <View style={styles.container}>
+    <Animated.View style={styles.container} exiting={FadeOut}>
       <Image
         source={require('../assets/tree.png')} //Nature Vectors by Vecteezy - https://www.vecteezy.com/free-vector/nature
         style={styles.img}
       />
       <Logo />
-    </View>
+    </Animated.View>
   );
 }
 
