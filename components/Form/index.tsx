@@ -5,46 +5,28 @@ import Animated, { SlideOutDown, SlideInDown } from 'react-native-reanimated';
 import { useForm } from 'react-hook-form';
 import Input from './Input';
 import Checkbox from './Checkbox';
-import Logo from './Logo';
-import Button from './Button';
+import Logo from '../Logo';
+import Button from '../Button';
+import Divider from '../Divider';
+import { CalcData } from '../../types';
+import { calcCarbonFootprint } from '../../utils';
 
 export default function Form({ handleModal }: { handleModal: () => void }) {
-  const { control, handleSubmit } = useForm();
+  const { control, handleSubmit } = useForm<CalcData>();
 
-  const onSubmit = (data: any) => {
-    const {
-      electricBill,
-      gasBill,
-      oilBill,
-      yearlyMileageCar,
-      recycleNewspaper,
-      recycleAluminumTin,
-    } = data;
-
-    const flights =
-      data.flights <= 4 && data.flights > 0
-        ? parseInt(data.flights) * 1100
-        : parseInt(data.flights) * 4400;
-
-    const result =
-      parseInt(electricBill) * 105 +
-      parseInt(gasBill) * 105 +
-      parseInt(oilBill) * 113 +
-      parseInt(yearlyMileageCar) * 0.79 +
-      flights +
-      recycleNewspaper * 184 +
-      recycleAluminumTin * 166;
+  const onSubmit = (data: CalcData) => {
+    const result = calcCarbonFootprint(data);
     console.log(result);
   };
 
   return (
     <KeyboardAwareScrollView>
-      <Animated.View entering={SlideInDown} exiting={SlideOutDown} style={styles.container}>
+      <Animated.View entering={SlideInDown} style={styles.container}>
         <View style={styles.header}>
           <Logo />
           <AntDesign name="close" size={24} color="black" onPress={handleModal} />
         </View>
-        <View style={styles.divider} />
+        <Divider />
         <Input
           name="electricBill"
           defaultValue=""
@@ -87,8 +69,10 @@ export default function Form({ handleModal }: { handleModal: () => void }) {
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 50,
     backgroundColor: '#ffffff',
     borderRadius: 18,
+    height: '100%',
   },
   header: {
     padding: 6,
@@ -96,10 +80,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginHorizontal: 4,
-  },
-  divider: {
-    borderBottomColor: 'black',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    marginVertical: 4,
   },
 });
