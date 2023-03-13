@@ -1,22 +1,35 @@
 import { View, StyleSheet } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { AntDesign } from '@expo/vector-icons';
-import Animated, { SlideOutDown, SlideInDown } from 'react-native-reanimated';
+import Animated, { SlideInDown } from 'react-native-reanimated';
 import { useForm } from 'react-hook-form';
 import Input from './Input';
 import Checkbox from './Checkbox';
 import Logo from '../Logo';
 import Button from '../Button';
 import Divider from '../Divider';
-import { CalcData } from '../../types';
+import { CalcData, ResultInStorage } from '../../types';
 import { calcCarbonFootprint } from '../../utils';
+import { addNewResultToStorage } from '../../utils/asyncStorage';
 
-export default function Form({ handleModal }: { handleModal: () => void }) {
+export default function Form({
+  handleModal,
+  handleResults,
+}: {
+  handleModal: () => void;
+  handleResults: (newResult: ResultInStorage) => void;
+}) {
   const { control, handleSubmit } = useForm<CalcData>();
 
-  const onSubmit = (data: CalcData) => {
-    const result = calcCarbonFootprint(data);
-    console.log(result);
+  const onSubmit = async (data: CalcData) => {
+    const calc = calcCarbonFootprint(data);
+
+    const result = { date: new Date(), value: calc };
+
+    const xd = await addNewResultToStorage('results', result);
+
+    handleResults(result);
+    handleModal();
   };
 
   return (

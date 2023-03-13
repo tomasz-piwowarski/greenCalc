@@ -1,40 +1,26 @@
-import { FlatList } from 'react-native';
+import { FlatList, View, Text, StyleSheet } from 'react-native';
 import HistoryBlock from './HistoryBlock';
 import { rateValue } from '../utils';
+import { ResultInStorage } from '../types';
 
-const mockData = [
-  { date: new Date(), value: 10000 },
-  { date: new Date(), value: 15000 },
-  { date: new Date(), value: 23000 },
-  { date: new Date(), value: 21000 },
-  { date: new Date(), value: 10000 },
-  { date: new Date(), value: 36000 },
-  { date: new Date(), value: 10000 },
-  { date: new Date(), value: 15000 },
-  { date: new Date(), value: 23000 },
-  { date: new Date(), value: 21000 },
-  { date: new Date(), value: 10000 },
-  { date: new Date(), value: 36000 },
-  { date: new Date(), value: 10000 },
-  { date: new Date(), value: 15000 },
-  { date: new Date(), value: 23000 },
-  { date: new Date(), value: 21000 },
-  { date: new Date(), value: 10000 },
-  { date: new Date(), value: 36000 },
-];
+export default function History({ results }: { results: ResultInStorage[] }) {
+  if (!results.length) return <View style={styles.container}></View>;
 
-export default function History() {
   return (
     <FlatList
-      data={mockData}
+      data={results}
       renderItem={({ item }) => (
         <HistoryBlock date={item.date} value={item.value} rating={rateValue(item.value)} />
       )}
-      style={{
-        height: '70%',
-        paddingHorizontal: 10,
-        marginBottom: 30,
-      }}
+      style={styles.container}
     />
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    height: '70%',
+    paddingHorizontal: 10,
+    marginBottom: 30,
+  },
+});

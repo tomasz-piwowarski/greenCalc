@@ -1,5 +1,5 @@
 import { View, TouchableOpacity } from 'react-native';
-import HistoryBlock from '../HistoryBlock';
+import HistoryBlock from './HistoryBlock';
 import { Entypo } from '@expo/vector-icons';
 
 export default function AddNew({ handleModal }: { handleModal: () => void }) {

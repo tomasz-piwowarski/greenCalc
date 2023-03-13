@@ -22,7 +22,7 @@ export function calcCarbonFootprint (data: CalcData) {
 		Number(recycleNewspaper) * 184 +
 		Number(recycleAluminumTin) * 166;
 
-		return result;
+		return Math.ceil(result);
 }
 
 export function rateValue (value: number): string {

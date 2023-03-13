@@ -13,3 +13,5 @@ export interface Result {
 	value: number,
 	rating: string
 }
+
+export type ResultInStorage = Omit<Result, "rating">
