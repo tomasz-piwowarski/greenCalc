@@ -2,9 +2,15 @@ import { StyleSheet, View } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { StatusBar } from 'expo-status-bar';
 
-export default function Layout({ children }: { children: JSX.Element }) {
+export default function Layout({
+  children,
+  onLayout,
+}: {
+  children: JSX.Element;
+  onLayout: () => Promise<void>;
+}) {
   return (
-    <View style={styles.container}>
+    <View style={styles.container} onLayout={onLayout}>
       <LinearGradient colors={['rgba(98,152,64,255)', 'transparent']} style={styles.background} />
       {children}
       <StatusBar style="auto" />

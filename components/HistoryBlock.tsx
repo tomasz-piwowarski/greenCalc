@@ -37,8 +37,7 @@ const styles = StyleSheet.create({
     padding: 2,
   },
   title: {
-    fontFamily: Platform.OS === 'android' ? 'Montserrat-Bold' : 'Montserrat',
-    fontWeight: '700',
+    fontFamily: 'Montserrat_700Bold',
   },
   rating: {
     color: '#3d5f27',

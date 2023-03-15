@@ -23,8 +23,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   text: {
-    fontFamily: Platform.OS === 'android' ? 'Montserrat-Medium' : 'Montserrat',
-    fontWeight: '500',
+    fontFamily: 'Montserrat_500Medium',
     fontSize: 16,
     marginRight: 8,
   },

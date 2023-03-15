@@ -13,8 +13,7 @@ export default function Logo() {
 
 const styles = StyleSheet.create({
   logoFirstPart: {
-    fontFamily: Platform.OS === 'android' ? 'Montserrat-Light' : 'Montserrat',
-    fontWeight: '300',
+    fontFamily: 'Montserrat_300Light',
     fontSize: 36,
     color: '#568638',
     shadowColor: '#3d5f27',
@@ -23,8 +22,8 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
   },
   logoSecondPart: {
-    fontFamily: Platform.OS === 'android' ? 'Montserrat-Bold' : 'Montserrat',
-    fontWeight: '700',
+    fontFamily: 'Montserrat_700Bold',
+    fontWeight: Platform.OS === 'android' ? 'bold' : '700',
     fontSize: 36,
     color: '#568638',
     shadowColor: '#3d5f27',

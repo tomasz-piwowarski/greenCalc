@@ -26,7 +26,7 @@ export default function Form({
 
     const result = { date: new Date(), value: calc };
 
-    const xd = await addNewResultToStorage('results', result);
+    await addNewResultToStorage('results', result);
 
     handleResults(result);
     handleModal();

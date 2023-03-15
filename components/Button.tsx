@@ -27,10 +27,9 @@ const styles = StyleSheet.create({
     width: '50%',
   },
   text: {
-    fontFamily: Platform.OS === 'android' ? 'Montserrat-Bold' : 'Montserrat',
+    fontFamily: 'Montserrat_700Bold',
     fontSize: 16,
     lineHeight: 21,
-    fontWeight: 'bold',
     letterSpacing: 0.25,
     color: 'white',
   },
