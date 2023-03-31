@@ -15,4 +15,4 @@ npm install
 npx expo start
 ```
 
-Loading screen: Nature Vectors by Vecteezy - https://www.vecteezy.com/free-vector/nature
+Loading screen image: Nature Vectors by Vecteezy - https://www.vecteezy.com/free-vector/nature
